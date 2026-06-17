@@ -1,0 +1,2429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light" />
+<meta name="theme-color" content="#FAF7F2" />
+<title>Taller de Claude Cowork para Profesionales — Nelson Portugal</title>
+<meta name="description" content="El primer y único taller completo de Claude Cowork en español. Aprende a delegar tareas enteras a un agente de IA que trabaja en tu computadora mientras tú haces algo más." />
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Taller de Claude Cowork para Profesionales" />
+<meta property="og:description" content="6 sesiones en vivo. Aprende a delegar tareas enteras a un agente de IA que trabaja en tu computadora mientras tú haces algo más. Sin conocimientos previos." />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23FAF7F2'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='40' font-weight='500' text-anchor='middle' fill='%23C2410C'%3EN%3C/text%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  /* =========================================================
+     TOKENS
+     ========================================================= */
+  :root {
+    color-scheme: light;
+    /* Color */
+    --bg:           #FAF7F2;
+    --surface:      #FFFFFF;
+    --surface-2:   #F4F1EC;
+    --surface-3:   #FBEEE6;
+    --ink:          #1F1E1B;
+    --ink-2:        #57544E;
+    --ink-3:        #8C887F;
+    --accent:       #C2410C;
+    --accent-deep: #9A340A;
+    --accent-soft: #FCE7D5;
+    --border:      #E5E0D5;
+    --border-soft: #EDE8DD;
+    --good:         #15803D;
+    --bad:          #B91C1C;
+    --code-bg:     #1F1E1B;
+    --code-fg:     #ECE7DC;
+    --code-muted:  #8C887F;
+
+    /* Type */
+    --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    /* Scale */
+    --maxw: 1120px;
+    --maxw-narrow: 760px;
+
+    /* Motion & elevation */
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --shadow-1: 0 1px 2px rgba(31,30,27,0.04), 0 1px 1px rgba(31,30,27,0.03);
+    --shadow-2: 0 10px 30px -12px rgba(31,30,27,0.10), 0 2px 6px rgba(31,30,27,0.04);
+  }
+
+  /* =========================================================
+     RESET / BASE
+     ========================================================= */
+  *, *::before, *::after { box-sizing: border-box; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (max-width: 760px) { html { scroll-padding-top: 72px; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(194, 65, 12, 0.18);
+    font-feature-settings: "ss01", "cv11";
+    overflow-x: hidden;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  p { margin: 0 0 1em; }
+  ul, ol { margin: 0 0 1em; padding-left: 1.4em; }
+
+  /* =========================================================
+     LAYOUT
+     ========================================================= */
+  .wrap   { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: var(--maxw-narrow); margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; }
+  section.tight { padding: 56px 0; }
+  @media (max-width: 760px) {
+    section { padding: 56px 0; }
+    section.tight { padding: 40px 0; }
+  }
+
+  /* =========================================================
+     SKIP LINK (a11y)
+     ========================================================= */
+  .skip {
+    position: absolute;
+    left: 16px; top: 12px;
+    background: var(--ink);
+    color: #FBEEE6;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transform: translateY(-150%);
+    transition: transform 200ms var(--ease);
+    z-index: 200;
+  }
+  .skip:focus { transform: translateY(0); outline: 0; }
+
+  /* =========================================================
+     TOPBAR
+     ========================================================= */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 247, 242, 0.96);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--border-soft);
+    transition: box-shadow 200ms var(--ease), border-color 200ms var(--ease);
+  }
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .topbar { background: rgba(250, 247, 242, 0.82); }
+  }
+  .topbar.scrolled {
+    box-shadow: 0 4px 20px -10px rgba(31, 30, 27, 0.08);
+    border-bottom-color: transparent;
+  }
+  .topbar-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    position: relative;
+  }
+  @media (max-width: 760px) {
+    .topbar-inner { padding: 11px 18px; gap: 10px; }
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  @media (max-width: 760px) { .brand { font-size: 17px; } }
+  .brand em { color: var(--accent); font-style: normal; }
+  .topnav {
+    display: flex;
+    gap: 28px;
+    margin-left: auto;
+    font-size: 14.5px;
+    color: var(--ink-2);
+  }
+  .topnav a {
+    position: relative;
+    padding: 4px 0;
+    transition: color 160ms var(--ease);
+  }
+  .topnav a:hover, .topnav a.active { color: var(--accent); }
+  .topnav a.active::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .topbar .btn { padding: 9px 18px; font-size: 14px; }
+
+  /* Hamburger button — visible only on mobile */
+  .menu-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0;
+    cursor: pointer;
+    color: var(--ink);
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  }
+  .menu-toggle:hover { border-color: var(--ink); }
+  .menu-toggle .bars {
+    display: inline-block;
+    width: 18px;
+    height: 14px;
+    position: relative;
+  }
+  .menu-toggle .bars::before,
+  .menu-toggle .bars::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1.7px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 260ms var(--ease), top 220ms var(--ease) 60ms;
+  }
+  .menu-toggle .bars::before { top: 2px; }
+  .menu-toggle .bars::after  { top: 10px; }
+  .menu-toggle[aria-expanded="true"] {
+    background: var(--surface-3);
+    border-color: var(--accent);
+  }
+  .menu-toggle[aria-expanded="true"] .bars::before {
+    top: 6px;
+    transform: rotate(45deg);
+    transition: top 220ms var(--ease), transform 260ms var(--ease) 60ms;
+  }
+  .menu-toggle[aria-expanded="true"] .bars::after {
+    top: 6px;
+    transform: rotate(-45deg);
+    transition: top 220ms var(--ease), transform 260ms var(--ease) 60ms;
+  }
+
+  @media (max-width: 760px) {
+    .menu-toggle { display: inline-flex; }
+    .topbar .btn { padding: 10px 16px; font-size: 13.5px; min-height: 38px; }
+
+    /* Mobile nav becomes a dropdown panel */
+    .topnav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 24px 50px -24px rgba(31,30,27,0.18);
+      padding: 6px 18px 18px;
+      font-size: 17px;
+      opacity: 0;
+      transform: translateY(-8px);
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 220ms var(--ease), transform 220ms var(--ease), visibility 0s linear 220ms;
+    }
+    .topnav.open {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+      pointer-events: auto;
+      transition: opacity 220ms var(--ease), transform 220ms var(--ease), visibility 0s linear 0s;
+    }
+    .topnav a {
+      padding: 16px 4px;
+      border-bottom: 1px solid var(--border-soft);
+      color: var(--ink);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topnav a:last-of-type { border-bottom: 0; }
+    .topnav a::after {
+      content: "→";
+      color: var(--ink-3);
+      font-weight: 400;
+      transition: transform 200ms var(--ease), color 200ms var(--ease);
+    }
+    .topnav a.active::after,
+    .topnav a:hover::after { color: var(--accent); transform: translateX(3px); }
+    .topnav a.active { color: var(--accent); }
+    .topnav a.active::before { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .topnav, .menu-toggle .bars::before, .menu-toggle .bars::after { transition: none; }
+  }
+
+  /* Body scroll lock helper */
+  body.nav-open {
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  /* =========================================================
+     BUTTONS
+     ========================================================= */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 16px 26px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 140ms var(--ease), background 180ms var(--ease), border-color 180ms var(--ease), color 180ms var(--ease), box-shadow 180ms var(--ease);
+    white-space: nowrap;
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.12) inset, 0 4px 14px -4px rgba(194,65,12,0.35);
+  }
+  .btn-primary:hover { background: var(--accent-deep); transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.14) inset, 0 8px 22px -6px rgba(154,52,10,0.45); }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--ink); background: rgba(31,30,27,0.02); }
+  .btn-arrow::after { content: "→"; font-weight: 400; transition: transform 200ms var(--ease); }
+  .btn-arrow:hover::after { transform: translateX(4px); }
+  .btn-lg { padding: 19px 32px; font-size: 17px; }
+  @media (max-width: 540px) {
+    .btn-lg { padding: 17px 22px; font-size: 16px; }
+    /* botones dentro de cards llenos: permitir wrap si no caben */
+    .enroll-card .btn,
+    .closing .btn,
+    .faq .btn { white-space: normal; text-align: center; line-height: 1.3; min-height: 52px; }
+  }
+
+  /* =========================================================
+     EYEBROW / TAGS
+     ========================================================= */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .eyebrow.bare::before { display: none; }
+  .eyebrow .dot { color: var(--ink-3); }
+
+  /* =========================================================
+     TYPOGRAPHY
+     ========================================================= */
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; margin: 0 0 0.4em; color: var(--ink); }
+  h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 500; }
+  h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.12; }
+  h3 { font-size: clamp(22px, 2.6vw, 28px); }
+  h4 { font-size: 20px; }
+
+  .lead {
+    font-size: clamp(18px, 1.6vw, 21px);
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin-bottom: 1.5em;
+  }
+  .display-quote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  /* =========================================================
+     HERO
+     ========================================================= */
+  .hero { padding-top: 72px; padding-bottom: 56px; }
+  .hero .eyebrow { margin-bottom: 28px; }
+  .hero h1 {
+    max-width: 18ch;
+    margin: 0 auto 24px;
+    text-align: center;
+    text-wrap: balance;
+  }
+  .hero .lead {
+    max-width: 56ch;
+    margin: 0 auto 12px;
+    text-align: center;
+  }
+  .hero .lead strong { color: var(--ink); font-weight: 600; }
+  .hero .reassure {
+    text-align: center;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    margin-bottom: 36px;
+  }
+  .hero .cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+  .hero-top { text-align: center; }
+
+  /* Hero card de datos */
+  .info-card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 980px;
+    margin: 0 auto 40px;
+  }
+  .info-card > div {
+    padding: 22px 16px;
+    text-align: center;
+    border-right: 1px solid var(--border-soft);
+  }
+  .info-card > div:last-child { border-right: 0; background: var(--surface-3); }
+  .info-card .label {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .info-card .value {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--ink);
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 720px) {
+    .info-card { grid-template-columns: repeat(2, 1fr); }
+    .info-card > div { border-right: 0; border-bottom: 1px solid var(--border-soft); }
+    .info-card > div:nth-child(odd) { border-right: 1px solid var(--border-soft); }
+    .info-card > div:nth-last-child(-n+2) { border-bottom: 0; }
+  }
+
+  /* Stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .stats .num {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.5vw, 38px);
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .stats .lbl {
+    font-size: 13px;
+    color: var(--ink-3);
+    letter-spacing: 0.02em;
+  }
+  @media (max-width: 540px) {
+    .stats { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  }
+
+  /* =========================================================
+     LOGOS
+     ========================================================= */
+  .logos {
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+    padding: 28px 0;
+    background: var(--surface-2);
+  }
+  .logos-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .logos .label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 14px;
+  }
+  .logos .list {
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: var(--ink-2);
+    line-height: 1.7;
+  }
+  .logos .list span { display: inline-block; margin: 0 4px; }
+  .logos .list .sep { color: var(--border); margin: 0 8px; }
+
+  /* =========================================================
+     PROBLEM SECTION + PROMPT MOCKUP (SIGNATURE)
+     ========================================================= */
+  .problem h2 { max-width: 18ch; }
+  .pain-list {
+    font-size: 18px;
+    color: var(--ink-2);
+    line-height: 1.7;
+    max-width: 56ch;
+  }
+  .pain-list strong { color: var(--ink); font-weight: 500; }
+
+  .imagine {
+    margin-top: 40px;
+    font-size: 18px;
+    color: var(--ink-2);
+  }
+
+  /* Prompt mockup — el signature element */
+  .prompt {
+    background: var(--code-bg);
+    color: var(--code-fg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04) inset;
+    margin: 28px 0 28px;
+    font-family: var(--font-mono);
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+  @media (max-width: 600px) {
+    .prompt { font-size: 13.5px; border-radius: 10px; }
+    .prompt-body { padding: 18px 18px 4px !important; }
+  }
+  .prompt-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .prompt-header .dots { display: flex; gap: 6px; }
+  .prompt-header .dots span {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+  }
+  .prompt-header .title {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12.5px;
+    color: var(--code-muted);
+    letter-spacing: 0.04em;
+  }
+  .prompt-body { padding: 22px 24px 4px; }
+  .prompt-user {
+    color: #FBEEE6;
+    margin-bottom: 22px;
+  }
+  .prompt-user .caret {
+    color: var(--accent);
+    margin-right: 10px;
+    font-weight: 600;
+  }
+  .prompt-divider {
+    border-top: 1px dashed rgba(255,255,255,0.12);
+    margin: 4px 0 18px;
+  }
+  .prompt-tasks { padding-bottom: 22px; }
+  .prompt-tasks .task {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 7px 0;
+    color: var(--code-muted);
+    transition: color 400ms var(--ease);
+  }
+  .prompt-tasks .task.done { color: #B8D9C5; }
+  .prompt-tasks .task.active { color: #FBEEE6; }
+  .prompt-tasks .check {
+    width: 18px; height: 18px; flex: 0 0 18px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: background 400ms var(--ease), border-color 400ms var(--ease), color 400ms var(--ease);
+  }
+  .prompt-tasks .task.done .check {
+    background: rgba(72, 181, 124, 0.18);
+    border-color: rgba(72, 181, 124, 0.6);
+    color: #74D4A2;
+  }
+  .prompt-tasks .task.active .check {
+    background: rgba(194, 65, 12, 0.25);
+    border-color: rgba(194, 65, 12, 0.7);
+    color: #F4B690;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  .prompt-tasks .task small {
+    margin-left: auto;
+    font-size: 12px;
+    opacity: 0.6;
+    font-variant-numeric: tabular-nums;
+    transition: opacity 400ms var(--ease);
+  }
+  .prompt-tasks .task:not(.done):not(.active) small { opacity: 0; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .prompt-tasks .task.active .check { animation: none; }
+  }
+  .prompt-caption {
+    font-size: 14px;
+    color: var(--ink-3);
+    text-align: center;
+    font-style: italic;
+    margin-top: -8px;
+    margin-bottom: 32px;
+  }
+
+  .conclusion {
+    font-size: 19px;
+    line-height: 1.5;
+    margin-top: 12px;
+  }
+  .conclusion strong { color: var(--ink); font-weight: 600; }
+
+  /* =========================================================
+     PARALLEL WORK
+     ========================================================= */
+  .parallel { background: var(--surface-2); border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); }
+  .parallel h2 { max-width: 22ch; }
+  .parallel .key {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.4vw, 28px);
+    line-height: 1.4;
+    margin: 28px 0;
+    color: var(--ink);
+    max-width: 30ch;
+  }
+  .parallel .key em { color: var(--accent); font-style: normal; font-weight: 500; }
+
+  .closing-line {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2vw, 24px);
+    margin-top: 32px;
+    color: var(--ink-2);
+  }
+  .closing-line strong { color: var(--ink); font-weight: 500; }
+
+  /* =========================================================
+     WHAT IS COWORK
+     ========================================================= */
+  .what h2 { max-width: 18ch; }
+  .what .intro { max-width: 60ch; font-size: 18px; color: var(--ink-2); }
+  .feature-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 48px;
+    margin-top: 36px;
+    list-style: none;
+    padding: 0;
+  }
+  @media (max-width: 720px) {
+    .feature-list { grid-template-columns: 1fr; gap: 22px; }
+  }
+  .feature {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .feature .marker {
+    flex: 0 0 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    font-family: var(--font-display);
+  }
+  .feature h4 { margin: 0 0 4px; font-size: 17px; font-family: var(--font-body); font-weight: 600; }
+  .feature p { margin: 0; color: var(--ink-2); font-size: 16px; line-height: 1.55; }
+
+  .practice-note {
+    margin-top: 40px;
+    padding: 20px 24px;
+    border-left: 2px solid var(--accent);
+    background: var(--surface-3);
+    border-radius: 0 6px 6px 0;
+    font-size: 16px;
+    color: var(--ink-2);
+  }
+  .practice-note strong { color: var(--ink); font-weight: 600; }
+
+  /* =========================================================
+     BENEFITS GRID
+     ========================================================= */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  @media (max-width: 880px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .benefits-grid { grid-template-columns: 1fr; } }
+  .benefit {
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+  .benefit:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .benefit .num {
+    font-family: var(--font-display);
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+  }
+  .benefit h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+  .benefit p { color: var(--ink-2); font-size: 15.5px; line-height: 1.55; margin: 0; }
+
+  /* =========================================================
+     COMPARE TABLE
+     ========================================================= */
+  .compare h2 { max-width: 22ch; }
+  .compare .key-line {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.4vw, 28px);
+    margin: 24px 0;
+    color: var(--ink);
+    max-width: 28ch;
+    line-height: 1.4;
+  }
+  .compare .sub {
+    font-size: 17px;
+    color: var(--ink-2);
+    margin-bottom: 40px;
+    max-width: 60ch;
+  }
+  .compare .sub strong { color: var(--ink); font-weight: 600; }
+
+  .ctable {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .ctable th, .ctable td {
+    padding: 16px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 15px;
+    vertical-align: middle;
+  }
+  .ctable thead th {
+    background: var(--ink);
+    color: var(--surface-2);
+    font-weight: 600;
+    font-family: var(--font-body);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 0;
+  }
+  .ctable thead th.center { text-align: center; }
+  .ctable tbody tr:last-child td { border-bottom: 0; }
+  .ctable tbody tr:nth-child(even) { background: var(--surface-2); }
+  .ctable td.center { text-align: center; font-weight: 500; }
+  .ctable td.good { color: var(--good); }
+  .ctable td.bad  { color: var(--bad); }
+  .ctable td.partial { color: var(--ink-3); font-size: 13.5px; }
+  .ctable td.meaning { color: var(--ink-2); }
+  @media (max-width: 720px) {
+    .ctable, .ctable thead, .ctable tbody, .ctable th, .ctable td, .ctable tr { display: block; }
+    .ctable thead { display: none; }
+    .ctable tbody tr { border-bottom: 1px solid var(--border); padding: 18px; }
+    .ctable tbody tr:nth-child(even) { background: var(--surface-2); }
+    .ctable td { padding: 4px 0; border: 0; font-size: 15px; }
+    .ctable td.center::before { content: attr(data-label) ": "; color: var(--ink-3); font-weight: 600; }
+    .ctable td.meaning { padding-top: 8px; color: var(--ink-2); font-size: 14.5px; }
+  }
+
+  .compare-conclusion {
+    margin-top: 36px;
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+  .compare-conclusion strong { color: var(--ink); }
+
+  /* =========================================================
+     FOR WHO
+     ========================================================= */
+  .for-who { background: var(--surface-2); border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); }
+  .for-who .intro { max-width: 60ch; font-size: 17px; color: var(--ink-2); }
+  .for-who-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 44px;
+  }
+  @media (max-width: 760px) { .for-who-grid { grid-template-columns: 1fr; } }
+  .who-card {
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
+  }
+  .who-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-2);
+  }
+  .who-card h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+  .who-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .who-card li {
+    position: relative;
+    padding-left: 22px;
+    color: var(--ink-2);
+    font-size: 15.5px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+  .who-card li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .for-who-closing {
+    margin-top: 44px;
+    padding: 28px 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-2);
+  }
+  .for-who-closing strong { color: var(--accent); font-weight: 600; }
+
+  /* =========================================================
+     SYLLABUS
+     ========================================================= */
+  .syllabus h2 { max-width: 18ch; }
+  .syllabus .intro { max-width: 56ch; color: var(--ink-2); font-size: 18px; margin-bottom: 56px; }
+  .session {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 32px;
+    padding: 36px 0;
+    border-top: 1px solid var(--border);
+  }
+  .session:first-of-type { border-top: 1px solid var(--ink); }
+  .session:last-of-type { border-bottom: 1px solid var(--border); }
+  @media (max-width: 720px) {
+    .session { grid-template-columns: 1fr; gap: 14px; }
+  }
+  .session .number {
+    font-family: var(--font-display);
+    font-size: 42px;
+    color: var(--accent);
+    line-height: 1;
+    font-weight: 400;
+  }
+  .session .week {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-top: 8px;
+  }
+  .session h3 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.4vw, 26px);
+    margin: 0 0 10px;
+    line-height: 1.2;
+  }
+  .session .session-lead {
+    font-size: 16px;
+    color: var(--ink-2);
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+  .session ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 32px;
+  }
+  @media (max-width: 720px) { .session ul { grid-template-columns: 1fr; } }
+  .session li {
+    position: relative;
+    padding-left: 24px;
+    font-size: 15.5px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .session li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 14px;
+    height: 8px;
+    border-left: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+  }
+  .session li strong { font-weight: 600; color: var(--ink); }
+
+  .syllabus-foot {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  /* =========================================================
+     CALM (objection: technical terms)
+     ========================================================= */
+  .calm h2 { max-width: 18ch; }
+  .calm .body { font-size: 17px; color: var(--ink-2); max-width: 60ch; }
+  .calm .body strong { color: var(--ink); font-weight: 600; }
+  .calm-list {
+    margin-top: 24px;
+    padding: 0;
+    list-style: none;
+  }
+  .calm-list li {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 17px;
+    color: var(--ink-2);
+  }
+  .calm-list li:last-child { border-bottom: 0; }
+  .calm-list li strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 19px;
+    color: var(--ink);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .calm .conclusion {
+    font-size: 17px;
+    color: var(--ink-2);
+    margin-top: 32px;
+    line-height: 1.6;
+  }
+  .calm .conclusion strong { color: var(--ink); font-weight: 600; }
+
+  /* =========================================================
+     CONFIDENTIAL
+     ========================================================= */
+  .confidential { background: var(--surface-2); border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); }
+  .confidential h2 { max-width: 20ch; }
+  .confidential p { font-size: 17px; color: var(--ink-2); max-width: 64ch; }
+  .confidential strong { color: var(--ink); font-weight: 600; }
+
+  /* =========================================================
+     REQUIREMENTS
+     ========================================================= */
+  .requirements h2 { max-width: 22ch; }
+  .requirements .intro { color: var(--ink-2); font-size: 17px; max-width: 60ch; }
+  .req-list {
+    list-style: none;
+    padding: 0;
+    margin: 32px 0;
+  }
+  .req-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 16.5px;
+    color: var(--ink-2);
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .req-list li::before {
+    content: "";
+    width: 18px;
+    height: 10px;
+    border-left: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+    margin-top: 6px;
+  }
+  .req-list li strong { color: var(--ink); font-weight: 600; }
+  .req-foot {
+    font-size: 15.5px;
+    color: var(--ink-3);
+    font-style: italic;
+  }
+
+  /* =========================================================
+     TESTIMONIALS
+     ========================================================= */
+  .testimonials { background: var(--surface-2); border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); }
+  .testimonials h2 { max-width: 24ch; }
+  .testimonials .intro { color: var(--ink-2); font-size: 17px; }
+  .tgrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 44px;
+  }
+  @media (max-width: 880px) { .tgrid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .tgrid { grid-template-columns: 1fr; } }
+  .quote {
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
+  }
+  .quote:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-2);
+  }
+  .quote .mark {
+    font-family: var(--font-display);
+    font-size: 42px;
+    line-height: 0.6;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .quote .text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  .quote .who {
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--accent);
+  }
+  .quote .role {
+    font-size: 13px;
+    color: var(--ink-3);
+  }
+
+  /* =========================================================
+     ENROLLMENT
+     ========================================================= */
+  .enrollment { padding: 100px 0; }
+  .enroll-card {
+    max-width: 760px;
+    margin: 40px auto 0;
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: 14px;
+    padding: 44px 48px;
+    box-shadow: 0 30px 60px -28px rgba(154, 52, 10, 0.20);
+  }
+  @media (max-width: 540px) { .enroll-card { padding: 32px 24px; } }
+  .enroll-card .eyebrow { margin-bottom: 12px; }
+  .enroll-card h3 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.6vw, 28px);
+    margin-bottom: 28px;
+  }
+  .enroll-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+  }
+  .enroll-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 16px;
+    color: var(--ink-2);
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 14px;
+    align-items: baseline;
+  }
+  .enroll-list li:last-child { border-bottom: 0; }
+  .enroll-list li::before {
+    content: "";
+    width: 16px;
+    height: 9px;
+    border-left: 2px solid var(--good);
+    border-bottom: 2px solid var(--good);
+    transform: rotate(-45deg);
+    margin-top: 6px;
+  }
+  .enroll-list li strong { color: var(--ink); font-weight: 600; }
+  .enroll-price {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+  .price-old {
+    font-size: 15px;
+    color: var(--ink-3);
+    text-decoration: line-through;
+    margin-bottom: 8px;
+  }
+  .price-new {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 48px);
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .price-new sup { font-size: 0.5em; vertical-align: super; margin-left: 6px; color: var(--accent); font-family: var(--font-body); font-weight: 600; }
+  .price-label {
+    font-size: 14px;
+    color: var(--ink-3);
+    margin-bottom: 28px;
+  }
+  .enroll-card .btn { width: 100%; }
+
+  /* =========================================================
+     GUARANTEE
+     ========================================================= */
+  .guarantee {
+    background: var(--surface-3);
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .guarantee .narrow { text-align: center; }
+  .guarantee h2 {
+    margin-bottom: 20px;
+  }
+  .guarantee p {
+    font-size: 18px;
+    color: var(--ink-2);
+    max-width: 56ch;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .guarantee strong { color: var(--ink); font-weight: 600; }
+
+  /* =========================================================
+     INSTRUCTOR
+     ========================================================= */
+  .instructor h2 { max-width: 20ch; }
+  .ins-block {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 56px;
+    margin-top: 28px;
+    align-items: start;
+  }
+  @media (max-width: 760px) { .ins-block { grid-template-columns: 1fr; gap: 32px; } }
+  .ins-card {
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .ins-card .name {
+    font-family: var(--font-display);
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+  .ins-card .title {
+    font-size: 14.5px;
+    color: var(--accent);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .ins-card .lead-text {
+    font-size: 15.5px;
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+  .ins-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .ins-list li {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border-soft);
+    color: var(--ink-2);
+    font-size: 16px;
+    line-height: 1.5;
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 14px;
+    align-items: baseline;
+  }
+  .ins-list li:first-child { padding-top: 0; }
+  .ins-list li::before {
+    content: "→";
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* =========================================================
+     CLOSING
+     ========================================================= */
+  .closing { background: var(--ink); color: var(--surface-2); }
+  .closing h2 {
+    color: #FBEEE6;
+    max-width: 22ch;
+    font-size: clamp(30px, 4vw, 48px);
+  }
+  .closing p { font-size: 17.5px; color: #EFE6D8; line-height: 1.65; max-width: 60ch; }
+  .closing p strong { color: #FFFFFF; font-weight: 600; }
+  .closing em { color: #F8C9A4; font-style: italic; font-weight: 500; }
+  .closing .eyebrow { color: #F8C9A4 !important; }
+  .closing .eyebrow::before { background: #F8C9A4; }
+  .closing .moment {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3vw, 36px);
+    color: #F4B690;
+    margin-top: 36px;
+    margin-bottom: 36px;
+    line-height: 1.2;
+  }
+  .closing .btn-primary {
+    background: #F4B690;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .closing .btn-primary:hover { background: #FBEEE6; color: var(--ink); }
+
+  /* =========================================================
+     FAQ
+     ========================================================= */
+  .faq h2 { max-width: 20ch; }
+  .faq-group { margin-top: 40px; }
+  .faq-group h3 {
+    font-family: var(--font-body);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    font-weight: 600;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  details:last-of-type { border-bottom: 1px solid var(--border); }
+  details summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+    transition: color 160ms ease;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after {
+    content: "+";
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--accent);
+    transition: transform 200ms ease;
+    flex: 0 0 auto;
+  }
+  details[open] summary::after { transform: rotate(45deg); }
+  details summary:hover { color: var(--accent); }
+  details .answer {
+    padding-top: 14px;
+    color: var(--ink-2);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 70ch;
+  }
+  details .answer p { margin: 0; }
+
+  /* =========================================================
+     FOOTER
+     ========================================================= */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    background: var(--surface-2);
+  }
+  .footer-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 14px;
+    color: var(--ink-3);
+  }
+  .footer-inner .brand { font-size: 16px; }
+  .footer-inner a:hover { color: var(--accent); }
+
+  /* =========================================================
+     UTILS
+     ========================================================= */
+  .center { text-align: center; }
+  .mt-l { margin-top: 40px; }
+
+  /* CTA inline strip */
+  .cta-strip {
+    margin: 0;
+    padding: 28px 0;
+    background: var(--ink);
+    color: var(--surface);
+    text-align: center;
+  }
+  .cta-strip .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .cta-strip .text {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: #FBEEE6;
+  }
+  .cta-strip .btn-primary {
+    background: #F4B690;
+    color: var(--ink);
+  }
+  .cta-strip .btn-primary:hover { background: #FBEEE6; }
+
+  /* Reveal-on-scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 600ms ease, transform 600ms ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* Focus states */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .btn:focus-visible {
+    outline-offset: 4px;
+  }
+
+  /* FAQ — smooth open transition */
+  details {
+    border-bottom: 1px solid var(--border-soft);
+    padding: 20px 0;
+  }
+  details .answer-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 280ms var(--ease);
+  }
+  details[open] .answer-wrap { grid-template-rows: 1fr; }
+  details .answer-inner { overflow: hidden; }
+  @media (prefers-reduced-motion: reduce) {
+    details .answer-wrap { transition: none; }
+  }
+
+  /* Back-to-top */
+  .totop {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: #FBEEE6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 240ms var(--ease), transform 240ms var(--ease), background 200ms var(--ease);
+    z-index: 90;
+    box-shadow: 0 12px 30px -10px rgba(31,30,27,0.35);
+  }
+  .totop.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .totop:hover { background: var(--accent); }
+  .totop svg { width: 18px; height: 18px; }
+  @media (min-width: 880px) { .totop { right: 28px; bottom: 28px; } }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<!-- ============== TOPBAR ============== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#main" class="brand">Nelson Portugal</a>
+    <nav class="topnav" id="topnav">
+      <a href="#temario">Temario</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#consultor">Consultor</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <a href="#inscripcion" class="btn btn-primary">Inscribirme</a>
+    <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="topnav">
+      <span class="bars" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============== HERO ============== -->
+  <section class="hero">
+    <div class="narrow hero-top">
+      <span class="eyebrow">100% Práctico <span class="dot">·</span> Primer y único en español <span class="dot">·</span> Nuevo</span>
+      <h1>Taller de Claude Cowork para Profesionales</h1>
+      <p class="lead">Saber usar ChatGPT <strong>ya no es suficiente</strong>. Claude Cowork no responde: <strong>ejecuta tareas enteras en tu computadora</strong> mientras tú haces algo más.</p>
+      <p class="reassure">¡Sin conocimientos previos!</p>
+      <div class="cta-row">
+        <a href="#inscripcion" class="btn btn-primary btn-lg btn-arrow">Reservar mi cupo</a>
+        <a href="#temario" class="btn btn-ghost btn-lg">Ver el temario</a>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="info-card">
+        <div>
+          <div class="label">Inicio</div>
+          <div class="value">Próximamente</div>
+        </div>
+        <div>
+          <div class="label">Duración</div>
+          <div class="value">6 semanas</div>
+        </div>
+        <div>
+          <div class="label">Horario</div>
+          <div class="value">Mar · 8 a 10 pm</div>
+        </div>
+        <div>
+          <div class="label">Inversión</div>
+          <div class="value">S/ 1,000 + IGV</div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div><div class="num">9.5/10</div><div class="lbl">Satisfacción</div></div>
+        <div><div class="num">+200</div><div class="lbl">Profesionales</div></div>
+        <div><div class="num">+80</div><div class="lbl">Empresas</div></div>
+        <div><div class="num">+10</div><div class="lbl">Años de experiencia</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== LOGOS ============== -->
+  <div class="logos">
+    <div class="logos-inner">
+      <div class="label">Han participado profesionales de empresas como</div>
+      <div class="list">
+        <span>Ajinomoto</span><span class="sep">·</span>
+        <span>Pacífico Seguros</span><span class="sep">·</span>
+        <span>BBVA</span><span class="sep">·</span>
+        <span>Indra</span><span class="sep">·</span>
+        <span>AFP Integra</span><span class="sep">·</span>
+        <span>OSIPTEL</span><span class="sep">·</span>
+        <span>MEF</span><span class="sep">·</span>
+        <span>PageGroup</span><span class="sep">·</span>
+        <span>Cosapi</span><span class="sep">·</span>
+        <span>Minsur</span><span class="sep">·</span>
+        <span>Huawei</span><span class="sep">·</span>
+        <span>Entel</span><span class="sep">·</span>
+        <span>PetroPerú</span><span class="sep">·</span>
+        <span>Marina de Guerra del Perú</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== PROBLEM + PROMPT MOCKUP ============== -->
+  <section class="problem">
+    <div class="narrow">
+      <span class="eyebrow">El problema</span>
+      <h2>¿Cuántas horas al mes pierdes en lo mismo de siempre?</h2>
+      <p class="pain-list">Procesar facturas. Revisar contratos. Armar el reporte ejecutivo. Conciliar cuentas. Organizar expedientes. Redactar la misma propuesta con otro nombre.</p>
+      <p class="imagine">Ahora imagina esto. Le escribes a tu computadora, en español normal:</p>
+
+      <div class="prompt reveal">
+        <div class="prompt-header">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="title">claude cowork — agente</div>
+        </div>
+        <div class="prompt-body">
+          <div class="prompt-user">
+            <span class="caret">▸</span>Procesa las 187 facturas de esta carpeta, extrae los datos, genera el Excel con los asientos contables, detéctame las diferencias contra el extracto bancario y hazme un resumen ejecutivo de una página.
+          </div>
+          <div class="prompt-divider"></div>
+          <div class="prompt-tasks">
+            <div class="task done"><span class="check">✓</span>Leyendo 187 PDFs<small>3 min 12 s</small></div>
+            <div class="task done"><span class="check">✓</span>Extrayendo datos contables<small>1 min 48 s</small></div>
+            <div class="task done"><span class="check">✓</span>Creando Excel con asientos<small>42 s</small></div>
+            <div class="task active"><span class="check">●</span>Detectando diferencias con extracto<small>en curso</small></div>
+            <div class="task"><span class="check"></span>Generando resumen ejecutivo</div>
+          </div>
+        </div>
+      </div>
+      <p class="prompt-caption">Le das enviar. El agente trabaja. Tú haces algo más.</p>
+
+      <p class="conclusion"><strong>Eso es Claude Cowork.</strong> No es un chat al que le preguntas cosas. Es más como dejarle una tarea a un colega de confianza, irte — y volver al trabajo terminado.</p>
+    </div>
+  </section>
+
+  <!-- ============== CTA STRIP ============== -->
+  <div class="cta-strip">
+    <div class="wrap">
+      <span class="text">¿Listo para recuperar horas de tu semana?</span>
+      <a href="#inscripcion" class="btn btn-primary btn-arrow">Reservar mi cupo</a>
+    </div>
+  </div>
+
+  <!-- ============== PARALLEL WORK ============== -->
+  <section class="parallel">
+    <div class="narrow">
+      <span class="eyebrow">Lo que cambia todo</span>
+      <h2>Trabaja mientras tú haces algo más</h2>
+
+      <p class="lead">La mayoría de herramientas de IA te tienen pegado a la pantalla: preguntas, esperas, copias, vuelves a preguntar. Sigues siendo tú el que hace el trabajo, solo que más rápido.</p>
+
+      <p class="key">Cowork es distinto. Le enseñas una tarea una vez — y <em>la ejecuta por su cuenta</em>.</p>
+
+      <p>Piensa en algo que haces cada semana: armar un reporte, clasificar documentos, revisar un lote de contratos. Se lo muestras una vez y, a partir de ahí, se lo delegas como se lo delegarías a un asistente.</p>
+
+      <p>Y aquí lo realmente potente: <strong>puedes lanzar varias tareas en paralelo</strong>. Mientras tú estás en una reunión o atendiendo a un cliente, el agente avanza en tu computadora. Y no solo uno: pueden ser dos, tres, cinco agentes trabajando al mismo tiempo en cosas distintas — como si tuvieras un equipo entero avanzando a la vez. Piensa cuánto más podrías lograr en un día así.</p>
+
+      <p>Incluso lo puedes programar: <em>"cada lunes a las 7 am ármame el reporte de la semana"</em> — y ya está listo cuando llegas a la oficina.</p>
+
+      <p class="closing-line">Es la diferencia entre <strong>tener una herramienta</strong> y <strong>tener un equipo</strong>.</p>
+    </div>
+  </section>
+
+  <!-- ============== WHAT IS COWORK ============== -->
+  <section class="what">
+    <div class="narrow">
+      <span class="eyebrow">El producto</span>
+      <h2>¿Qué es Claude Cowork?</h2>
+      <p class="intro">Es el agente de escritorio de Anthropic, la empresa que crea Claude. Funciona dentro de tu computadora como un colaborador digital — no como un buscador ni un chatbot. Estas son las capacidades que lo hacen distinto a cualquier IA que hayas usado antes:</p>
+
+      <ul class="feature-list">
+        <li class="feature">
+          <span class="marker">1</span>
+          <div>
+            <h4>Ejecuta tareas completas solo</h4>
+            <p>Le das un objetivo en español y hace el plan, ejecuta cada paso y entrega el resultado terminado. No te devuelve "un texto para que copies".</p>
+          </div>
+        </li>
+        <li class="feature">
+          <span class="marker">2</span>
+          <div>
+            <h4>Aprende tu forma de trabajar</h4>
+            <p>Le enseñas tus criterios, estilo y formatos una vez — y los aplica siempre, en cada tarea, sin reexplicar.</p>
+          </div>
+        </li>
+        <li class="feature">
+          <span class="marker">3</span>
+          <div>
+            <h4>Automatiza lo recurrente</h4>
+            <p>Programa una tarea (reporte semanal, cierre mensual, seguimiento a clientes) y se ejecuta sola cada vez que toca.</p>
+          </div>
+        </li>
+        <li class="feature">
+          <span class="marker">4</span>
+          <div>
+            <h4>Opera tu computador y navegador</h4>
+            <p>Replica exactamente lo que harías tú: hace clic, llena formularios, navega webs, completa procesos en cualquier sistema.</p>
+          </div>
+        </li>
+        <li class="feature">
+          <span class="marker">5</span>
+          <div>
+            <h4>Trabaja en paralelo</h4>
+            <p>Puede ejecutar varias tareas al mismo tiempo — como un equipo entero avanzando a la vez.</p>
+          </div>
+        </li>
+        <li class="feature">
+          <span class="marker">6</span>
+          <div>
+            <h4>Recuerda y mantiene contexto</h4>
+            <p>Cada proyecto tiene su memoria: conoce a tus clientes, tus procesos y tu historia — para que no le repitas todo cada vez.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="practice-note">
+        <strong>En la práctica:</strong> Cowork trabaja en tu computadora, con tus archivos y en tu navegador. Lee, modifica, crea, organiza, busca, navega — donde tú harías tus tareas, las hace él.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== BENEFITS ============== -->
+  <section class="benefits" style="background: var(--surface-2); border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft);">
+    <div class="wrap">
+      <div class="narrow" style="padding: 0;">
+        <span class="eyebrow">Lo que ganas</span>
+        <h2>Lo que ganarás al finalizar el taller</h2>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit">
+          <div class="num">01</div>
+          <h3>Recupera horas de tu semana</h3>
+          <p>Las tareas operativas que hoy te roban tardes enteras pasan a ejecutarse en segundo plano mientras tú haces lo que requiere tu criterio profesional.</p>
+        </div>
+        <div class="benefit">
+          <div class="num">02</div>
+          <h3>Entrega trabajo de mayor nivel</h3>
+          <p>Reportes con gráficos, análisis profundos, presentaciones impecables. No solo más rápido — mejor presentación, menos errores.</p>
+        </div>
+        <div class="benefit">
+          <div class="num">03</div>
+          <h3>Brilla en tu organización</h3>
+          <p>Eres quien entrega antes y mejor. Quien resuelve. Quien tu jefe consulta cuando hay algo complejo. Te posicionas como referente.</p>
+        </div>
+        <div class="benefit">
+          <div class="num">04</div>
+          <h3>Adelántate al mercado</h3>
+          <p>Claude Cowork es nuevo. Quienes lo dominen ahora estarán meses por delante. En uno o dos años será simplemente lo mínimo esperado.</p>
+        </div>
+        <div class="benefit">
+          <div class="num">05</div>
+          <h3>Sin conocimientos previos</h3>
+          <p>Le hablas a Cowork en español, como le hablarías a un asistente. Si sabes escribir un correo, sabes usar Cowork.</p>
+        </div>
+        <div class="benefit">
+          <div class="num">06</div>
+          <h3>Tu información, bajo control</h3>
+          <p>Aprenderás a usar Cowork con criterio profesional, sabiendo qué compartir, qué no, y cómo revisar lo que entrega.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== COMPARE ============== -->
+  <section class="compare">
+    <div class="wrap">
+      <div class="narrow" style="padding: 0;">
+        <span class="eyebrow">Comparación</span>
+        <h2>ChatGPT no es suficiente. Y necesitas saber por qué.</h2>
+        <p class="sub">Probablemente ya usas ChatGPT. Está bien — pero entiende esto con claridad:</p>
+        <p class="key-line">Usar solo ChatGPT para tu trabajo profesional es como usar una calculadora cuando ya existe Excel.</p>
+        <p class="sub">La calculadora te da un número. Excel te da un sistema que modela, proyecta y escala. ChatGPT te da una respuesta. <strong>Claude Cowork hace el trabajo.</strong></p>
+      </div>
+
+      <table class="ctable">
+        <thead>
+          <tr>
+            <th>Lo que necesitas hacer</th>
+            <th class="center">ChatGPT</th>
+            <th class="center">Claude Cowork</th>
+            <th>Lo que significa para ti</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Enseñarle un proceso de varios pasos</td>
+            <td class="center bad" data-label="ChatGPT">✕</td>
+            <td class="center good" data-label="Cowork">✓</td>
+            <td class="meaning">Le muestras una vez y replica el flujo siempre</td>
+          </tr>
+          <tr>
+            <td>Programar una tarea para que se ejecute sola</td>
+            <td class="center bad" data-label="ChatGPT">✕</td>
+            <td class="center good" data-label="Cowork">✓</td>
+            <td class="meaning">El reporte semanal sale sin que lo pidas</td>
+          </tr>
+          <tr>
+            <td>Procesar archivos y documentos en lote</td>
+            <td class="center bad" data-label="ChatGPT">✕</td>
+            <td class="center good" data-label="Cowork">✓</td>
+            <td class="meaning">Cientos de PDFs en una sola tarea</td>
+          </tr>
+          <tr>
+            <td>Crear una presentación de inicio a fin</td>
+            <td class="center partial" data-label="ChatGPT">parcial</td>
+            <td class="center good" data-label="Cowork">✓</td>
+            <td class="meaning">PPT completo con estructura, contenido y gráficos</td>
+          </tr>
+          <tr>
+            <td>Lanzar varias tareas en paralelo</td>
+            <td class="center bad" data-label="ChatGPT">✕</td>
+            <td class="center good" data-label="Cowork">✓</td>
+            <td class="meaning">Como tener un equipo trabajando a la vez</td>
+          </tr>
+          <tr>
+            <td>Operar tu navegador (formularios, webs, sistemas)</td>
+            <td class="center bad" data-label="ChatGPT">✕</td>
+            <td class="center good" data-label="Cowork">✓</td>
+            <td class="meaning">Llena formularios, navega, completa procesos por ti</td>
+          </tr>
+          <tr>
+            <td>Investigar y comparar opciones por ti</td>
+            <td class="center partial" data-label="ChatGPT">parcial</td>
+            <td class="center good" data-label="Cowork">✓</td>
+            <td class="meaning">Pide cotizaciones, compara y te entrega análisis</td>
+          </tr>
+          <tr>
+            <td>Generar dashboards y reportes con visuales</td>
+            <td class="center partial" data-label="ChatGPT">parcial</td>
+            <td class="center good" data-label="Cowork">✓</td>
+            <td class="meaning">Tableros listos a partir de tus datos</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="compare-conclusion">Y lo más importante: <strong>dominar la herramienta no basta.</strong> Lo que separa al profesional promedio del indispensable es la <strong>estrategia</strong> con la que la usa — qué delegar, cómo pedirlo, cómo integrarlo en su trabajo. Eso es lo que enseña este taller. No botones: criterio.</p>
+    </div>
+  </section>
+
+  <!-- ============== FOR WHO ============== -->
+  <section class="for-who">
+    <div class="wrap">
+      <div class="narrow" style="padding: 0;">
+        <span class="eyebrow">Para quién es</span>
+        <h2>¿Para quién es este taller?</h2>
+        <p class="intro">Algunos ejemplos concretos de lo que cada perfil puede delegarle a Cowork — no posibilidades teóricas, sino cosas que vas a aprender a hacer en el taller.</p>
+      </div>
+
+      <div class="for-who-grid">
+        <div class="who-card">
+          <h3>Contadores y jefes de finanzas</h3>
+          <ul>
+            <li>Procesar lotes de cientos de facturas y comprobantes en una sola tarea</li>
+            <li>Reconciliar el extracto bancario contra tus asientos y marcar diferencias</li>
+            <li>Generar el cierre mensual completo: balance, P&amp;L y dashboard ejecutivo con gráficos</li>
+            <li>Preparar papeles de trabajo y declaraciones de impuestos a partir de tus archivos</li>
+          </ul>
+        </div>
+        <div class="who-card">
+          <h3>Abogados</h3>
+          <ul>
+            <li>Revisar lotes de contratos y entregar un cuadro con cláusulas de riesgo identificadas</li>
+            <li>Generar borradores de demandas, contestaciones y memorandos en tu estilo</li>
+            <li>Organizar expedientes completos por cliente con resumen y línea de tiempo</li>
+            <li>Crear tu base de conocimiento legal: consulta tus contratos y jurisprudencia con citas verificables</li>
+          </ul>
+        </div>
+        <div class="who-card">
+          <h3>Ingenieros y profesionales técnicos</h3>
+          <ul>
+            <li>Procesar data de sensores, reportes operativos o logs y generar dashboards</li>
+            <li>Automatizar cálculos repetitivos en hojas técnicas y planillas</li>
+            <li>Llenar formularios y reportes regulatorios que hoy haces a mano</li>
+            <li>Generar documentación técnica de proyecto a partir de tus archivos</li>
+          </ul>
+        </div>
+        <div class="who-card">
+          <h3>Emprendedores y dueños de negocio</h3>
+          <ul>
+            <li>Pedir cotizaciones a varios proveedores, comparar y entregarte el análisis para que decidas</li>
+            <li>Crear imágenes y copys para tus campañas de marketing, listos para publicar</li>
+            <li>Diseñar y publicar tu landing page o web sencilla desde cero</li>
+            <li>Procesar tu inbox: prioriza, redacta respuestas, agenda seguimientos automáticos</li>
+          </ul>
+        </div>
+        <div class="who-card">
+          <h3>Gerentes generales y directivos</h3>
+          <ul>
+            <li>Consolidar reportes de áreas distintas en un dashboard ejecutivo coherente</li>
+            <li>Preparar material para juntas: agenda, resúmenes, presentaciones</li>
+            <li>Analizar KPIs y detectar riesgos antes de que escalen</li>
+            <li>Convertir horas de revisión semanal en una hora de decisión</li>
+          </ul>
+        </div>
+        <div class="who-card">
+          <h3>Consultores y profesionales independientes</h3>
+          <ul>
+            <li>Armar propuestas personalizadas para cada cliente, aplicando tu metodología</li>
+            <li>Procesar entrevistas o reuniones (audio o transcripción) y extraer insights estructurados</li>
+            <li>Generar entregables completos: reportes, presentaciones, planes de trabajo</li>
+            <li>Automatizar seguimiento comercial, recordatorios y facturación</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="for-who-closing">
+        <strong>Y en realidad: si usas la computadora como parte de tu trabajo, este taller es para ti.</strong>
+        No importa el rol específico — cualquier profesional que maneje información, genere entregables o coordine procesos puede multiplicar su productividad con Cowork.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SYLLABUS ============== -->
+  <section class="syllabus" id="temario">
+    <div class="narrow">
+      <span class="eyebrow">El temario</span>
+      <h2>6 sesiones, 6 semanas</h2>
+      <p class="intro">Cada sesión se construye sobre la anterior. Al finalizar, tendrás un sistema completo de IA integrado en tu trabajo diario.</p>
+    </div>
+
+    <div class="wrap">
+      <div class="session">
+        <div>
+          <div class="number">01</div>
+          <div class="week">Semana 1</div>
+        </div>
+        <div>
+          <h3>Fundamentos, Proyectos y configuración</h3>
+          <p class="session-lead">Instala Cowork, configúralo bien y ejecuta tu primera tarea real de principio a fin.</p>
+          <ul>
+            <li>Instalación y configuración paso a paso — sin tecnicismos</li>
+            <li><strong>Projects:</strong> cómo organizar tu trabajo con memoria persistente</li>
+            <li><strong>Contexto e instrucciones:</strong> el secreto detrás de buenos resultados</li>
+            <li>Tu primera tarea completa: del objetivo a la entrega del archivo terminado</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="session">
+        <div>
+          <div class="number">02</div>
+          <div class="week">Semana 2</div>
+        </div>
+        <div>
+          <h3>Artefactos: documentos, dashboards y webs profesionales</h3>
+          <p class="session-lead">Que Cowork no solo te responda — que produzca los entregables completos que necesitas.</p>
+          <ul>
+            <li>Estructura de una buena instrucción: del prompt simple al objetivo completo</li>
+            <li><strong>Artifacts:</strong> Excel con fórmulas reales, Word, presentaciones, dashboards interactivos y webs</li>
+            <li>Generar visuales y reportes con gráficos a partir de tus datos</li>
+            <li>Casos prácticos: financiero, legal, ejecutivo, landing pages</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="session">
+        <div>
+          <div class="number">03</div>
+          <div class="week">Semana 3</div>
+        </div>
+        <div>
+          <h3>Skills: enséñale tu forma de trabajar</h3>
+          <p class="session-lead">Que Cowork aplique siempre tu estilo y criterios — sin reexplicar cada vez.</p>
+          <ul>
+            <li><strong>Skills</strong> (habilidades reutilizables): tu manera de trabajar, automatizada</li>
+            <li>Cómo construir tu biblioteca personal de Skills profesionales</li>
+            <li>Skills compartidas con tu equipo: estandarizar criterios y formatos</li>
+            <li>Casos: Skill de cierre mensual, revisión de contratos, reporte ejecutivo</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="session">
+        <div>
+          <div class="number">04</div>
+          <div class="week">Semana 4</div>
+        </div>
+        <div>
+          <h3>Routines, Dispatch y trabajo en paralelo</h3>
+          <p class="session-lead">Pon a Cowork a trabajar por ti — durante horas, mientras tú haces otra cosa.</p>
+          <ul>
+            <li><strong>Routines y Scheduled Tasks:</strong> programa el trabajo recurrente</li>
+            <li><strong>Dispatch y tareas largas:</strong> trabajos de horas avanzando en segundo plano</li>
+            <li><strong>Sub-agentes en paralelo:</strong> un equipo entero trabajando a la vez</li>
+            <li>Casos reales: cierre contable, revisión de contratos en lote, propuestas masivas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="session">
+        <div>
+          <div class="number">05</div>
+          <div class="week">Semana 5</div>
+        </div>
+        <div>
+          <h3>Connectors y Computer Use: integraciones y operación</h3>
+          <p class="session-lead">Cowork se conecta con todo lo que ya usas — y opera tu navegador como lo harías tú.</p>
+          <ul>
+            <li><strong>Connectors:</strong> integración con Gmail, Drive, Calendar, Slack, Notion</li>
+            <li><strong>Computer Use:</strong> Cowork opera tu navegador y aplicaciones</li>
+            <li>Add-ins en Word, Excel y PowerPoint</li>
+            <li>Casos: cotizaciones a proveedores, llenar declaraciones, gestionar inbox, publicar contenido</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="session">
+        <div>
+          <div class="number">06</div>
+          <div class="week">Semana 6</div>
+        </div>
+        <div>
+          <h3>Seguridad, estrategia y tus casos reales</h3>
+          <p class="session-lead">Diseña tu propio sistema profesional de trabajo con IA — seguro y a tu medida.</p>
+          <ul>
+            <li>Buenas prácticas de seguridad con información confidencial de clientes</li>
+            <li>Revisión de <strong>TUS</strong> casos reales — traes tus desafíos</li>
+            <li>Cómo integrar Skills, Routines y Connectors en un sistema personal</li>
+            <li>Tu roadmap de automatización: qué delegar primero según tu rol</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CALM ============== -->
+  <section class="calm">
+    <div class="narrow">
+      <span class="eyebrow">Sin tecnicismos</span>
+      <h2>¿Te suena complicado? No lo es.</h2>
+      <p class="body">Es probable que algunas palabras del temario te suenen extrañas: <em>Skills, Routines, Dispatch, Connectors, Computer Use</em>. Es normal. Y déjame decirte algo importante:</p>
+      <p class="body"><strong>No necesitas saber nada de eso para entrar al taller.</strong> Tampoco necesitas conocimientos de programación, ni habilidades técnicas especiales en computadora, ni un equipo distinto al que ya usas a diario.</p>
+      <p class="body"><strong>Lo único que necesitas para tener éxito —y lo digo en serio— ya lo tienes:</strong></p>
+      <ul class="calm-list">
+        <li><strong>Lo que sabes de tu propio trabajo</strong>Tu profesión, tus procesos, lo que haces cada día.</li>
+        <li><strong>El criterio profesional que ya construiste</strong>Sabes qué resultado esperas, qué está bien y qué no. Eso ya lo tienes — porque ya lo has hecho antes.</li>
+        <li><strong>Español para darle la instrucción</strong>Si sabes explicar lo que quieres en un correo, sabes hablar con Cowork.</li>
+      </ul>
+      <p class="conclusion">El resto —los términos técnicos, las herramientas, los flujos— es lo que el taller te entrega: una <strong>guía estructurada, paso a paso, desde cero.</strong> Si dices en español qué necesitas y tienes acompañamiento profesional para implementarlo, llegas. Así de simple.</p>
+    </div>
+  </section>
+
+  <!-- ============== CONFIDENTIAL ============== -->
+  <section class="confidential">
+    <div class="narrow">
+      <span class="eyebrow">Una pregunta legítima</span>
+      <h2>"¿Y mi información confidencial?" Hablemos de esto de frente.</h2>
+      <p>Manejas datos de clientes, cifras sensibles, expedientes — y es razonable preguntarse cómo encaja un agente de IA con eso.</p>
+      <p>Cowork trabaja sobre los archivos y carpetas que tú le indicas, y te muestra lo que va haciendo en cada paso. Tú decides qué le compartes y qué no. Como con cualquier herramienta nueva, hay buenas prácticas que aprender: cómo organizar tu trabajo, qué información conviene tener separada, cómo revisar lo que el agente entrega antes de usarlo.</p>
+      <p><strong>Por eso una sesión completa del taller está dedicada a esto:</strong> cómo trabajar con Cowork de forma profesional y con criterio. Sales sabiendo qué hacer y qué no hacer.</p>
+    </div>
+  </section>
+
+  <!-- ============== REQUIREMENTS ============== -->
+  <section class="requirements">
+    <div class="narrow">
+      <span class="eyebrow">Sin sorpresas</span>
+      <h2>¿Qué necesito para empezar?</h2>
+      <p class="intro">Para que tomes la decisión con toda la información sobre la mesa:</p>
+      <ul class="req-list">
+        <li><div><strong>Una computadora con Windows o Mac.</strong> Cowork es una app de escritorio — funciona en tu laptop normal de trabajo.</div></li>
+        <li><div><strong>Una cuenta de pago de Claude.</strong> Cowork se incluye en los planes de pago de Claude (no en el gratuito). En la Sesión 1 te guiamos a elegir el adecuado según tu uso.</div></li>
+        <li><div><strong>Ganas de cambiar tu forma de trabajar.</strong> El resto lo construimos juntos.</div></li>
+      </ul>
+      <p class="req-foot">No necesitas saber programar. No necesitas instalar nada complicado. No necesitas experiencia previa con IA.</p>
+    </div>
+  </section>
+
+  <!-- ============== TESTIMONIALS ============== -->
+  <section class="testimonials" id="testimonios">
+    <div class="wrap">
+      <div class="narrow" style="padding: 0;">
+        <span class="eyebrow">Quienes ya pasaron por aquí</span>
+        <h2>Lo que dicen quienes ya se capacitaron conmigo</h2>
+        <p class="intro">Más de 200 profesionales de +80 empresas ya transformaron su productividad.</p>
+      </div>
+
+      <div class="tgrid">
+        <div class="quote">
+          <div class="mark">"</div>
+          <p class="text">Ha sido una clase muy enriquecedora que nos ha mostrado cómo podemos hacer las cosas de manera más rápida y eficiente. Las herramientas son realmente útiles.</p>
+          <div class="who">Fiorella Gallo</div>
+          <div class="role">Abogada y Empresaria</div>
+        </div>
+        <div class="quote">
+          <div class="mark">"</div>
+          <p class="text">Lo que más valoro es descubrir todas las posibilidades para mejorar la productividad utilizando herramientas que tenía a la mano pero que no aprovechaba a su máximo potencial.</p>
+          <div class="who">Charly Cervera</div>
+          <div class="role">Gerente General</div>
+        </div>
+        <div class="quote">
+          <div class="mark">"</div>
+          <p class="text">He entrado a un nuevo mundo que antes veía muy complejo. Se me han abierto muchas posibilidades y resultó ser más fácil de lo que pensaba, desde la mentalidad hasta la automatización.</p>
+          <div class="who">Juan García</div>
+          <div class="role">Gerente de Planta</div>
+        </div>
+        <div class="quote">
+          <div class="mark">"</div>
+          <p class="text">El curso ha cumplido todas mis expectativas. Lo has explicado de manera bastante amigable y clara.</p>
+          <div class="who">Ximena Subiría</div>
+          <div class="role">Sub Gerente de Ventas</div>
+        </div>
+        <div class="quote">
+          <div class="mark">"</div>
+          <p class="text">Más que sorprendido con la cantidad de herramientas y lo que pueden hacer. Son herramientas prácticas para aumentar la productividad en la vida diaria.</p>
+          <div class="who">Víctor Díaz</div>
+          <div class="role">Gerente de Capacitación TI</div>
+        </div>
+        <div class="quote">
+          <div class="mark">"</div>
+          <p class="text">Quiero expresar mi sincero agradecimiento. Ha sido una experiencia invaluable que me ha permitido adquirir conocimientos en un campo tan apasionante.</p>
+          <div class="who">Victor Hugo Condor</div>
+          <div class="role">Ejecutivo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== ENROLLMENT ============== -->
+  <section class="enrollment" id="inscripcion">
+    <div class="narrow">
+      <div class="center">
+        <span class="eyebrow bare">Inscripción</span>
+        <h2>Reserva tu cupo en el taller</h2>
+        <p class="lead">Un taller que cada mes te devuelve muchas más horas de las que inviertes en aprenderlo.</p>
+      </div>
+
+      <div class="enroll-card">
+        <span class="eyebrow">Tu inscripción incluye</span>
+        <h3>Taller de Claude Cowork para Profesionales</h3>
+
+        <ul class="enroll-list">
+          <li><div><strong>6 sesiones en vivo vía Zoom</strong> de 2 horas cada una, 100% prácticas. Una por semana durante 6 semanas.</div></li>
+          <li><div><strong>Certificado de participación</strong> emitido por Portugal Research International SAC.</div></li>
+          <li><div><strong>Acceso a grabaciones y recursos</strong> en plataforma privada — repasa a tu ritmo, para siempre.</div></li>
+          <li><div><strong>Plantillas y biblioteca de habilidades</strong> listas para usar desde el primer día.</div></li>
+          <li><div><strong>Soporte personalizado</strong> durante todo el taller. Cualquier duda, recibes guía directa.</div></li>
+          <li><div><strong>Revisión de tus casos reales</strong> en cada sesión — traes tus desafíos, los resolvemos juntos.</div></li>
+        </ul>
+
+        <div class="enroll-price">
+          <div class="price-old">Precio regular: S/ 1,450 + IGV</div>
+          <div class="price-new">S/ 1,000<sup>+ IGV</sup></div>
+          <div class="price-label">Tarifa preferencial — cupos limitados</div>
+          <a href="https://wa.me/51994607605?text=Hola%20Nelson%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20Taller%20de%20Claude%20Cowork." target="_blank" rel="noopener" class="btn btn-primary btn-lg btn-arrow">Inscribirme por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== GUARANTEE ============== -->
+  <section class="guarantee">
+    <div class="narrow">
+      <span class="eyebrow">Tu aprendizaje asegurado</span>
+      <h2>Sin riesgo para ti</h2>
+      <p>Si asistes a todas las sesiones e implementas lo aprendido pero no logras integrar Claude Cowork en tu trabajo diario, recibirás <strong>soporte personalizado adicional sin costo</strong> hasta que lo consigas. No nos conformamos con menos.</p>
+    </div>
+  </section>
+
+  <!-- ============== INSTRUCTOR ============== -->
+  <section class="instructor" id="consultor">
+    <div class="wrap">
+      <div class="narrow" style="padding: 0;">
+        <span class="eyebrow">El consultor</span>
+        <h2>Aprende de quien lo aplica cada día</h2>
+      </div>
+
+      <div class="ins-block">
+        <div class="ins-card">
+          <div class="name">Nelson Portugal</div>
+          <div class="title">Consultor en Desarrollo Personal &amp; Especialista en IA Aplicada</div>
+          <p class="lead-text">Autor del libro <em>"El Círculo de Crecimiento"</em> y especialista en el diseño de programas formativos para líderes empresariales. Ha capacitado a más de 200 profesionales en IA aplicada.</p>
+        </div>
+
+        <ul class="ins-list">
+          <li><div>Ha asesorado a profesionales de <strong>Cosapi, Minsur, Huawei, Entel, Colliers, PetroPerú</strong> y la <strong>Marina de Guerra del Perú</strong>, entre otras.</div></li>
+          <li><div>Ha dictado talleres de IA para empresas de los sectores <strong>salud, educación, seguros y manufactura.</strong></div></li>
+          <li><div>Ha integrado herramientas de IA y automatización en procesos comerciales y de marketing de diferentes empresas.</div></li>
+          <li><div>Invitado a dictar clases ejecutivas en <strong>Centrum PUCP</strong>. Profesor universitario en la Universidad Continental.</div></li>
+          <li><div>Administrador por la <strong>UPC</strong>. Programa especializado en Liderazgo de Firmas de Servicios Profesionales en <strong>Harvard Business School.</strong></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CLOSING ============== -->
+  <section class="closing">
+    <div class="narrow">
+      <span class="eyebrow" style="color: #F4B690;">Una última reflexión</span>
+      <h2>La IA no te quitará el trabajo. Pero quien sepa delegar tareas enteras en un agente reemplazará a quien no.</h2>
+
+      <p>Piensa en el inglés.</p>
+      <p>¿Cuántas veces deseaste haberlo aprendido antes? ¿Cuántas puertas se habrían abierto — ascensos, clientes, oportunidades — si lo hubieras dominado a tiempo?</p>
+      <p>El inglés fue <em>esa</em> habilidad para una generación.</p>
+      <p><strong>Esto es lo mismo. Pero está pasando ahora, y todavía estás a tiempo.</strong></p>
+      <p>Imagina aprender a trabajar con IA correctamente <em>hoy</em> — no en tres años, cuando ya todos lo hagan. Imagina el mundo de oportunidades que se abre cuando eres de los primeros en tu profesión que de verdad sabe hacer esto.</p>
+      <p>No dejes que esta también sea una habilidad que desearás haber aprendido antes.</p>
+
+      <p class="moment">El momento es ahora.</p>
+
+      <a href="#inscripcion" class="btn btn-primary btn-lg btn-arrow">Reservar mi cupo</a>
+    </div>
+  </section>
+
+  <!-- ============== FAQ ============== -->
+  <section class="faq" id="faq">
+    <div class="narrow">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Lo que querrás saber antes de inscribirte</h2>
+
+      <div class="faq-group">
+        <h3>Inscripción y pagos</h3>
+        <details>
+          <summary>¿Cómo me inscribo al taller?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>Puedes inscribirte por WhatsApp haciendo clic en cualquiera de los botones de inscripción, o escríbenos a <strong>nportugal@trasciende.la</strong> para coordinar tu inscripción.</p></div></div></div>
+        </details>
+        <details>
+          <summary>¿Cuáles son las formas de pago disponibles?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>Yape, Plin, transferencia bancaria o tarjeta de crédito.</p></div></div></div>
+        </details>
+        <details>
+          <summary>¿Emiten factura?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>Sí. Solo necesitas enviarnos el RUC. La inscripción se realiza a nombre de Portugal Research International SAC.</p></div></div></div>
+        </details>
+        <details>
+          <summary>¿Cuál es el costo del taller?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>Precio regular S/ 1,450 + IGV. Tarifa preferencial S/ 1,000 + IGV inscribiéndote pronto.</p></div></div></div>
+        </details>
+      </div>
+
+      <div class="faq-group">
+        <h3>Información del taller</h3>
+        <details>
+          <summary>¿Las clases son en vivo?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>Sí, todas las sesiones son en vivo vía Zoom, los martes de 8:00 pm a 10:00 pm (hora Perú). Tendrás acceso a las grabaciones y recursos adicionales.</p></div></div></div>
+        </details>
+        <details>
+          <summary>¿Hay grabaciones si no puedo asistir en vivo?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>Sí, todas las sesiones se graban y estarán disponibles en una plataforma privada. Además, cuentas con soporte personalizado durante el taller.</p></div></div></div>
+        </details>
+        <details>
+          <summary>¿Qué tipo de computadora necesito?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>Una laptop normal con Windows o Mac. Cowork es una app de escritorio — funciona en tu equipo habitual de trabajo.</p></div></div></div>
+        </details>
+        <details>
+          <summary>¿Necesito pagar algo más además del taller?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>Para usar Cowork necesitas una cuenta de pago de Claude (no la gratuita). En la Sesión 1 te orientamos para elegir el plan adecuado según tu uso.</p></div></div></div>
+        </details>
+      </div>
+
+      <div class="faq-group">
+        <h3>Contenido y metodología</h3>
+        <details>
+          <summary>¿Necesito conocimientos previos o saber programar?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>No. El taller está diseñado para profesionales de cualquier área, sin experiencia previa en IA ni programación. Hablarle a Cowork es como hablarle a un asistente — en español normal.</p></div></div></div>
+        </details>
+        <details>
+          <summary>¿El contenido es aplicable a mi profesión específica?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>Sí. El taller cubre casos de contabilidad, finanzas, derecho, ingeniería, gerencia, emprendimiento y consultoría. En cada sesión trabajamos sobre TUS casos.</p></div></div></div>
+        </details>
+        <details>
+          <summary>¿Cuánto tiempo necesito dedicarle?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>2 horas semanales en vivo, más 2-3 horas adicionales para implementación. Inviertes tiempo ahora para ahorrar muchas más horas después.</p></div></div></div>
+        </details>
+        <details>
+          <summary>¿Recibiré certificación al finalizar?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>Sí, al completar el taller obtendrás un certificado de participación a nombre de Portugal Research International SAC.</p></div></div></div>
+        </details>
+        <details>
+          <summary>Ya uso ChatGPT, ¿no es suficiente?</summary>
+          <div class="answer-wrap"><div class="answer-inner"><div class="answer"><p>No para el trabajo real con tus archivos. ChatGPT responde; Cowork ejecuta y entrega documentos. Son herramientas distintas para necesidades distintas.</p></div></div></div>
+        </details>
+      </div>
+
+      <div class="center mt-l">
+        <a href="#inscripcion" class="btn btn-primary btn-lg btn-arrow">Reservar mi cupo</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="brand">Nelson Portugal</div>
+      <div style="margin-top: 4px;">Portugal Research International SAC</div>
+    </div>
+    <div>
+      <a href="mailto:nportugal@trasciende.la?subject=Taller%20de%20Claude%20Cowork%20%E2%80%94%20Consulta">nportugal@trasciende.la</a>
+      <span style="margin: 0 12px; color: var(--border);">·</span>
+      <a href="https://wa.me/51994607605?text=Hola%20Nelson%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20Taller%20de%20Claude%20Cowork." target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <div>© 2026 Portugal Research International SAC.</div>
+  </div>
+</footer>
+
+<button class="totop" type="button" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5"/>
+    <path d="m5 12 7-7 7 7"/>
+  </svg>
+</button>
+
+<script>
+(function(){
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Reveal on scroll ---------- */
+  if (!reduced && 'IntersectionObserver' in window) {
+    document.querySelectorAll('.reveal').forEach(el => {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      io.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+
+  /* ---------- Header shadow on scroll ---------- */
+  const topbar = document.querySelector('.topbar');
+  const onScroll = () => {
+    if (window.scrollY > 8) topbar.classList.add('scrolled');
+    else topbar.classList.remove('scrolled');
+    // back to top visibility
+    if (window.scrollY > 600) totop.classList.add('visible');
+    else totop.classList.remove('visible');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- Back to top ---------- */
+  const totop = document.querySelector('.totop');
+  totop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+  });
+
+  /* ---------- Scrollspy ---------- */
+  const navLinks = document.querySelectorAll('.topnav a[href^="#"]');
+  const sectionMap = new Map();
+  navLinks.forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    const sec = document.getElementById(id);
+    if (sec) sectionMap.set(sec, a);
+  });
+  if ('IntersectionObserver' in window && sectionMap.size) {
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const link = sectionMap.get(e.target);
+        if (!link) return;
+        if (e.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+    sectionMap.forEach((_, sec) => spy.observe(sec));
+  }
+
+  /* ---------- Animated prompt mockup ---------- */
+  const promptEl = document.querySelector('.prompt');
+  if (promptEl) {
+    const tasks = Array.from(promptEl.querySelectorAll('.task'));
+    const initialState = tasks.map(t => ({
+      done: t.classList.contains('done'),
+      active: t.classList.contains('active'),
+      time: t.querySelector('small')?.textContent || ''
+    }));
+
+    const reset = () => {
+      tasks.forEach((t, i) => {
+        t.classList.remove('done', 'active');
+        const s = t.querySelector('small');
+        if (s) s.textContent = '';
+      });
+    };
+
+    const runOnce = () => {
+      if (reduced) {
+        // Just snap to the original visual end-state
+        tasks.forEach((t, i) => {
+          const st = initialState[i];
+          if (st.done) t.classList.add('done');
+          if (st.active) t.classList.add('active');
+          const s = t.querySelector('small');
+          if (s) s.textContent = st.time;
+        });
+        return;
+      }
+      reset();
+      let i = 0;
+      const tick = () => {
+        if (i >= tasks.length) return;
+        const t = tasks[i];
+        const st = initialState[i];
+        // mark active
+        tasks.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        const delay = (st.done ? 900 : 1800);
+        setTimeout(() => {
+          if (st.done) {
+            t.classList.remove('active');
+            t.classList.add('done');
+            const s = t.querySelector('small');
+            if (s) s.textContent = st.time;
+          } else if (st.active) {
+            // keep active state (last running task)
+            const s = t.querySelector('small');
+            if (s) s.textContent = st.time;
+            return;
+          }
+          i++;
+          tick();
+        }, delay);
+      };
+      tick();
+    };
+
+    // Trigger when prompt enters viewport; reset on re-enter
+    if ('IntersectionObserver' in window) {
+      let started = false;
+      const promptIO = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting && !started) {
+            started = true;
+            runOnce();
+          }
+        });
+      }, { threshold: 0.4 });
+      promptIO.observe(promptEl);
+    } else {
+      runOnce();
+    }
+  }
+  /* ---------- Mobile menu (hamburger) ---------- */
+  const menuToggle = document.querySelector('.menu-toggle');
+  const topnav = document.querySelector('.topnav');
+  const navAnchors = topnav ? topnav.querySelectorAll('a') : [];
+
+  const closeMenu = () => {
+    if (!topnav) return;
+    topnav.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Abrir menú');
+    document.body.classList.remove('nav-open');
+  };
+  const openMenu = () => {
+    if (!topnav) return;
+    topnav.classList.add('open');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    menuToggle.setAttribute('aria-label', 'Cerrar menú');
+    document.body.classList.add('nav-open');
+  };
+
+  if (menuToggle && topnav) {
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = topnav.classList.contains('open');
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    // Cerrar al tocar un link
+    navAnchors.forEach(a => a.addEventListener('click', closeMenu));
+
+    // Cerrar al tocar fuera del menú
+    document.addEventListener('click', (e) => {
+      if (!topnav.classList.contains('open')) return;
+      if (topnav.contains(e.target) || menuToggle.contains(e.target)) return;
+      closeMenu();
+    });
+
+    // ESC cierra
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && topnav.classList.contains('open')) closeMenu();
+    });
+
+    // Si la ventana pasa a desktop con el menú abierto, lo desactivo
+    const mq = window.matchMedia('(min-width: 761px)');
+    mq.addEventListener && mq.addEventListener('change', (e) => { if (e.matches) closeMenu(); });
+  }
+})();
+</script>
+
+</body>
+</html>
